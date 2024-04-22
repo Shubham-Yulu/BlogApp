@@ -28,6 +28,19 @@ const createPostTableQuery = `
   )
 `;
 
+const createCommentTableQuery = `
+  CREATE TABLE IF NOT EXISTS comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    text VARCHAR(255) NOT NULL,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES posts(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  )
+`;
+
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -57,5 +70,6 @@ async function createTable(createTableQuery, tableName) {
 createDatabase();
 createTable(createUserTableQuery, "users");
 createTable(createPostTableQuery, "posts");
+createTable(createCommentTableQuery, "comments");
 
 export default pool;

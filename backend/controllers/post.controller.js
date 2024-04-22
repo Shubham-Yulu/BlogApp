@@ -51,7 +51,7 @@ const deletePost = async (req, res) => {
     try {
         const id = req.params.id;
 
-        const result = await pool.query('DELETE FROM posts WHERE id = ?', [id]);
+        const [result] = await pool.query('DELETE FROM posts WHERE id = ?', [id]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Post not found' });
