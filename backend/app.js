@@ -13,6 +13,8 @@ app.use(morgan('short'))
 
 app.use("/api/", routes);
 
+app.use(express.static('./public'));
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })

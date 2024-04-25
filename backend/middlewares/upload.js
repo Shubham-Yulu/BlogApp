@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname);
       const fileName = file.fieldname + '-' + uniqueSuffix 
-      const imageUrl = `${folderPath}/${fileName}`;
+      const imageUrl = `/images/${fileName}`;
       req.imageUrl = imageUrl
       cb(null, fileName)
     }
