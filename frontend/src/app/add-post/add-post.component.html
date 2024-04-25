@@ -1,0 +1,31 @@
+<div class="container text-center">
+    <h3>Add Blog</h3>
+</div>
+<form class="container" [formGroup]='blog' enctype="multipart/form-data" (ngSubmit)="submitForm()" >
+    <div class="row mb-3">
+      <label for="title" class="col-sm-2 col-form-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="title" formControlName="title">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="description" class="col-sm-2 col-form-label">Description</label>
+      <div class="col-sm-10">
+        <textarea type="textarea" class="form-control" id="description" formControlName="description"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="file">File</label>
+        <input 
+            formControlName="file"
+            id="file" 
+            type="file" 
+            class="form-control"
+            (change)="onFileChange($event)">
+        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+            <div *ngIf="f.file?.errors?.required">File is required.</div>
+        </div>
+    </div> 
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>
+
