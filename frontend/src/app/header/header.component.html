@@ -9,8 +9,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="authService.isLoggedIn()">
             <a class="nav-link" routerLink="/new-post">New Post</a>
+          </li>
+          <li class="nav-item">
+            <button *ngIf="authService.isLoggedIn()" class="btn btn-primary" (click)="authService.logout()">Logout</button>
+            <button *ngIf="!authService.isLoggedIn()"class="btn btn-primary" routerLink="/login">Login</button>
           </li>
         </ul>
       </div>

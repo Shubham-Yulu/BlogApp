@@ -1,14 +1,14 @@
 <div class="container p-5">
     <div class="card mb-3">
-        <img src="..." class="card-img-top" alt="...">
+        <img crossorigin="anonymous" [src]="imageUrl + blog.imageUrl" class="card-img-top blog-image" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{blog.title}}</h5>
           <p class="card-text">{{blog.description}}</p>
           <div class="row mx-2">
-              <div class="col-lg-4">
+              <div class="col-lg-4" *ngIf="authService.isLoggedIn()">
                   <button type="submit" class="btn btn-primary">Edit</button>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4" *ngIf="authService.isLoggedIn()">
                   <button type="submit" class="btn btn-danger" (click)="deleteBlog(blog.id)">Delete</button>
               </div>
           </div>

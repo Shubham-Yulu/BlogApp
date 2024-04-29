@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../post.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-blog',
@@ -11,7 +12,14 @@ export class BlogComponent implements OnInit {
 
   private id! : string | null
   public blog : any
-  constructor(private route: ActivatedRoute, private postService: PostService, private router: Router) { }
+  imageUrl = "http://localhost:3000"
+  
+  constructor(private route: ActivatedRoute,
+    private postService: PostService,
+    public authService : AuthService,
+    private router: Router) {
+      
+     }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
