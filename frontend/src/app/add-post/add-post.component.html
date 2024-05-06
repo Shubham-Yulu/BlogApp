@@ -14,18 +14,16 @@
         <textarea type="textarea" class="form-control" id="description" formControlName="description"></textarea>
       </div>
     </div>
-    <div class="form-group">
-        <label for="file">File</label>
+    <div class="form-group mb-3">
+        <label for="file">Image</label>
         <input 
             formControlName="file"
             id="file" 
             type="file" 
             class="form-control"
-            (change)="onFileChange($event)">
-        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-            <div *ngIf="f.file?.errors?.required">File is required.</div>
-        </div>
-    </div> 
+            (change)="upload($event)"
+        >
+    </div>
     <button type="submit" class="btn btn-primary">Post</button>
   </form>
 
